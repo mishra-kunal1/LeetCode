@@ -7,14 +7,16 @@ class Solution:
         i=0
         j=len(nums)-1
         for ele in nums:
-            if(nums[i]*nums[i]>nums[j]*nums[j]):
+            left_square=nums[i]*nums[i]
+            right_square=nums[j]*nums[j]
+            if(left_square>right_square):
                 
-                temp[index]=nums[i]*nums[i]
+                temp[index]=left_square
                 i=i+1
                 index=index-1
             else:
                 
-                temp[index]=nums[j]*nums[j]
+                temp[index]=right_square
                 j=j-1
                 index=index-1
         return temp
