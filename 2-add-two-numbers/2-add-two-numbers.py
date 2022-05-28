@@ -1,40 +1,37 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution(object):
-    def ll_to_num(self,head):
-        power=0
-        sum=0
-        while(head is not None):
-            place_val=(head.val)*(10**power)
-            sum=sum+place_val
+class Solution:
+    def print_ll(self,head):
+        while(head):
+            print(head.val,end="")
             head=head.next
-            power=power+1
-        return sum
-    def addTwoNumbers(self, l1, l2):
-        """
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
-        """
-        num_1=Solution().ll_to_num(l1)
-        num_2=Solution().ll_to_num(l2)
-        res=num_1+num_2
-        s=str(res)
-        head=None
-        curr=head
-        for digit in s[::-1]:
-            if head is None:
-                head= ListNode(digit)
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        l3=ListNode(0)
+        curr=l3
+        carry=0
+        while(l1 or l2):
+            if(l1 is None):
+                val1=0
             else:
-                curr=head
-                while(curr.next is not None):
-                    curr=curr.next
-                curr.next=ListNode(digit)
-        return head
+                val1=l1.val
+            if(l2 is None):
+                val2=0
+            else:
+                val2=l2.val
+            sum_val=val1+val2+carry
+            carry=sum_val//10
+            curr.next=ListNode(sum_val%10)
+            
+            curr=curr.next
+            if(l1):
+                l1=l1.next
+            if(l2):
+                l2=l2.next
+        if(carry>0):
+            curr.next=ListNode(carry)
+        return l3.next
             
             
-            
-        
